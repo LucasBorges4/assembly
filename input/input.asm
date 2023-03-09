@@ -1,3 +1,5 @@
+; nasm -f elf64 input.asm
+; ld -s -o input input.o
 segment .data
          LF equ 0xA ; line feed, quebra de linha
          NULL equ 0xD;

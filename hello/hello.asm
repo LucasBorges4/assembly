@@ -1,11 +1,11 @@
 ; Compilar - Transformar o programa para linguagem de maquina
 ; para instalar o nasm no windows basta usar o comando via powershell : winget install nasm -i
-; nasm -f elf64 assembly.asm
-; ld -s -o assembly assembly.o
+; nasm -f elf64 hello.asm
+; ld -s -o hello hello.o
 ; .data é constantes
 
 section .data 
-    msg db 'Hello World!'
+    msg db 'Hello World!', 0x0A
     tam equ $- msg
 
 section .text
@@ -18,7 +18,7 @@ _start:
     mov ECX, msg ; mostra a mensagem
     mov EDX, tam ; tamanho é esse
     int 0x80 ; "CAMBIO", executa.
-
+output:
     mov EAX, 0x1 ; terminando o programa
     mov EBX, 0x0 ; valor de retorno é 0
     int 0x80
