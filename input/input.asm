@@ -1,5 +1,4 @@
-; nasm -f elf64 input.asm
-; ld -s -o input input.o
+
 segment .data
          LF equ 0xA ; line feed, quebra de linha
          NULL equ 0xD;
@@ -19,7 +18,7 @@ section .data
          tam equ $- msg
 
 section .bss
-    nome resb 1 ; (entrada)
+    nome resb 1
 
 section .text
 
@@ -31,13 +30,14 @@ _start:
          mov EBX, STD_OUT
          mov ECX, msg
          mov EDX, tam
-         int SYS_CALL ;executa a operação
+         int SYS_CALL 
 
          mov EAX, SYS_READ
          mov EBX, STD_IN
-         mov ECX, nome (entrada)
+         mov ECX, nome
          mov EDX, 0xA
-         int SYS_CALL ;executa a operação
+         int SYS_CALL
 
          mov EAX, SYS_EXIT
-         mov EBX, RET_EXIT
+         mov EBX, RETURN_EXIT
+         int SYS_CALL
